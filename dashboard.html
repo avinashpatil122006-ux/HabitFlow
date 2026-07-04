@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | HabitFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-theme="dark">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="zap" class="logo-icon"></i>
+                    <span>HabitFlow</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="menu-item">
+                    <i data-lucide="calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <i data-lucide="bar-chart-2"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="achievements.html" class="menu-item">
+                    <i data-lucide="award"></i>
+                    <span>Achievements</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-peek">
+                    <div class="user-avatar" id="user-avatar">👤</div>
+                    <div class="user-info">
+                        <p id="user-name">Adventurer</p>
+                        <span id="user-level" class="badge">Lvl 1</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-greeting">
+                    <h2 id="greeting-text">Good Morning, Adventurer 👋</h2>
+                    <p class="date-text" id="current-date">Friday, October 1, 2023</p>
+                </div>
+                <div class="top-actions">
+                    <button class="btn btn-outline" id="search-btn">
+                        <i data-lucide="search"></i>
+                    </button>
+                    <button class="btn btn-primary" id="add-habit-btn-top">
+                        <i data-lucide="plus"></i> Add Habit
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Overview -->
+            <section class="stats-overview">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i data-lucide="check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-completed">0</h3>
+                        <p>Done Today</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i data-lucide="flame"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-streak">0</h3>
+                        <p>Current Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i data-lucide="star"></i></div>
+                    <div class="stat-info">
+                        <h3 id="stat-xp">0</h3>
+                        <p>Total XP</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+                <!-- Today's Habits -->
+                <section class="habits-section">
+                    <div class="section-header">
+                        <h3>Today's Habits</h3>
+                        <div class="filters">
+                            <span class="filter-pill active" data-filter="all">All</span>
+                            <span class="filter-pill" data-filter="pending">Pending</span>
+                            <span class="filter-pill" data-filter="completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="habit-cards" id="habit-list">
+                        <!-- Habits will be injected here -->
+                        <div class="empty-state">
+                            <p>No habits yet. Start by adding one!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Widgets Sidebar -->
+                <aside class="widgets-column">
+                    <div class="progress-ring-card glass-card">
+                        <h3>Daily Progress</h3>
+                        <div class="progress-container">
+                            <svg width="150" height="150" viewBox="0 0 150 150">
+                                <circle cx="75" cy="75" r="65" stroke="var(--border)" stroke-width="10" fill="transparent" />
+                                <circle id="progress-ring-circle" cx="75" cy="75" r="65" stroke="var(--primary)" stroke-width="10" fill="transparent" stroke-dasharray="408.4" stroke-dashoffset="408.4" stroke-linecap="round" />
+                            </svg>
+                            <span class="progress-text" id="progress-percent">0%</span>
+                        </div>
+                        <p id="progress-status">Keep going!</p>
+                    </div>
+
+                    <div class="quote-card glass-card">
+                        <i data-lucide="quote" class="quote-icon"></i>
+                        <blockquote id="daily-quote">"The secret of your future is hidden in your daily routine."</blockquote>
+                        <cite id="quote-author">Mike Murdock</cite>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="fab-add-habit" title="Add New Habit">
+        <i data-lucide="plus"></i>
+    </div>
+
+    <!-- Modal for Adding Habit -->
+    <div class="modal-overlay" id="habit-modal">
+        <div class="modal glass-card">
+            <div class="modal-header">
+                <h3>Create New Habit</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="habit-form" class="modal-body">
+                <div class="form-group">
+                    <label>Habit Name</label>
+                    <input type="text" id="habit-name" placeholder="e.g. Morning Jog" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="habit-category">
+                            <option value="Health">Health</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Study">Study</option>
+                            <option value="Reading">Reading</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Coding">Coding</option>
+                            <option value="Productivity">Productivity</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Emoji</label>
+                        <input type="text" id="habit-emoji" value="✨" maxlength="2">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <select id="habit-difficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="habit-priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Goal Frequency</label>
+                    <select id="habit-goal">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="cancel-habit">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Habit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/habits.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/notification.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

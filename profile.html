@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | HabitFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            background: var(--surface-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 4px solid var(--primary);
+        }
+        .profile-info-main h2 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        .profile-stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="zap" class="logo-icon"></i>
+                    <span>HabitFlow</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="menu-item">
+                    <i data-lucide="calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <i data-lucide="bar-chart-2"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="achievements.html" class="menu-item">
+                    <i data-lucide="award"></i>
+                    <span>Achievements</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-peek">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-info">
+                        <p id="user-name-small">Adventurer</p>
+                        <span id="user-level-small" class="badge">Lvl 1</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="profile-header">
+                <div class="profile-avatar-large">👤</div>
+                <div class="profile-info-main">
+                    <h2 id="profile-name">Adventurer</h2>
+                    <p class="date-text" id="member-since">Member since October 2023</p>
+                    <div id="profile-level-badge" class="badge" style="font-size: 1rem; padding: 5px 15px; margin-top: 10px;">Level 1</div>
+                </div>
+            </div>
+
+            <div class="profile-stats-cards">
+                <div class="stat-card glass-card">
+                    <div class="stat-info">
+                        <h3 id="profile-xp">0</h3>
+                        <p>Total XP Earned</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-info">
+                        <h3 id="profile-streak">0</h3>
+                        <p>Longest Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-info">
+                        <h3 id="profile-habits">0</h3>
+                        <p>Active Habits</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/statistics.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = HabitStorage.init();
+            document.getElementById('profile-name').textContent = data.user.name;
+            document.getElementById('profile-xp').textContent = data.user.xp;
+            document.getElementById('profile-level-badge').textContent = `Level ${data.user.level}`;
+            document.getElementById('profile-habits').textContent = data.habits.length;
+            document.getElementById('profile-streak').textContent = StatsEngine.calculateGlobalStreak(data.logs);
+            
+            const joinedDate = new Date(data.user.joinedDate);
+            document.getElementById('member-since').textContent = `Member since ${joinedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`;
+            
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

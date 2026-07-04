@@ -1,0 +1,59 @@
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.badge-card {
+    text-align: center;
+    padding: var(--spacing-xl);
+    position: relative;
+    opacity: 0.5;
+    filter: grayscale(1);
+    transition: var(--transition);
+}
+
+.badge-card.unlocked {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.badge-card.unlocked:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.badge-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: var(--surface-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.unlocked .badge-icon {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.badge-card h3 {
+    margin-bottom: 10px;
+}
+
+.badge-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.unlock-date {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+}

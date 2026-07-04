@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HabitFlow | Build Better Habits Every Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="landing-page">
+    <nav class="navbar">
+        <div class="logo">
+            <i data-lucide="zap" class="logo-icon"></i>
+            <span>HabitFlow</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Build Better Habits <br><span class="gradient-text">Every Single Day</span></h1>
+                <p class="fade-up">Track, analyze, and master your daily routines with HabitFlow. The smart way to stay consistent and reach your goals.</p>
+                <div class="hero-btns fade-up">
+                    <a href="dashboard.html" class="btn btn-large btn-primary">Start Tracking Now</a>
+                    <a href="#features" class="btn btn-large btn-outline">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div class="glass-card mockup">
+                    <div class="mockup-header">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-line-large"></div>
+                        <div class="mockup-grid">
+                            <div class="mockup-cell"></div>
+                            <div class="mockup-cell"></div>
+                            <div class="mockup-cell"></div>
+                            <div class="mockup-cell"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2 class="section-title">Why HabitFlow?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <i data-lucide="trending-up"></i>
+                    <h3>Smart Tracking</h3>
+                    <p>Real-time progress bars and circular rings to keep you motivated.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="calendar"></i>
+                    <h3>Visual Calendar</h3>
+                    <p>A beautiful heat-mapped calendar to visualize your consistency.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <i data-lucide="award"></i>
+                    <h3>Gamified XP</h3>
+                    <p>Earn levels and unlock professional badges as you progress.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HabitFlow. Built with passion for productivity.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | HabitFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-theme="dark">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="zap" class="logo-icon"></i>
+                    <span>HabitFlow</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="calendar.html" class="menu-item">
+                    <i data-lucide="calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <i data-lucide="bar-chart-2"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="achievements.html" class="menu-item">
+                    <i data-lucide="award"></i>
+                    <span>Achievements</span>
+                </a>
+                <a href="settings.html" class="menu-item active">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-peek">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-info">
+                        <p id="user-name">Adventurer</p>
+                        <span id="user-level" class="badge">Lvl 1</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-greeting">
+                    <h2>Settings</h2>
+                    <p class="date-text">Customize your HabitFlow experience.</p>
+                </div>
+            </header>
+
+            <div class="settings-grid">
+                <section class="settings-section glass-card">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <p>Dark Mode</p>
+                            <span>Switch between light and dark themes.</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="theme-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="settings-section glass-card">
+                    <h3>System</h3>
+                    <div class="setting-item">
+                        <label>Accent Color</label>
+                        <input type="color" id="accent-picker" value="#6366f1">
+                    </div>
+                </section>
+
+                <section class="settings-section glass-card">
+                    <h3>Data Management</h3>
+                    <div class="btn-group">
+                        <button class="btn btn-outline" id="export-json">
+                            <i data-lucide="download"></i> Export Data
+                        </button>
+                        <button class="btn btn-outline" id="import-btn">
+                            <i data-lucide="upload"></i> Import Data
+                        </button>
+                        <input type="file" id="import-json" style="display: none;" accept=".json">
+                    </div>
+                    <div class="danger-zone">
+                        <button class="btn btn-danger" id="reset-data">
+                             Reset All Progress
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/export.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        // Theme toggle logic
+        const toggle = document.getElementById('theme-toggle');
+        toggle.addEventListener('change', (e) => {
+            const theme = e.target.checked ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', theme);
+            HabitStorage.update('settings', { ...HabitStorage.get('settings'), theme });
+        });
+
+        // Simple reset logic
+        document.getElementById('reset-data').addEventListener('click', () => {
+            if (confirm('Are you ABSOLUTELY sure? This will delete all your habits and progress forever.')) {
+                HabitStorage.clear();
+            }
+        });
+    </script>
+</body>
+</html>

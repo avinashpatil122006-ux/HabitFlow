@@ -1,0 +1,89 @@
+/* 
+    HabitFlow Responsive Design
+    Ensures a premium experience across all devices.
+*/
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 80px;
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .sidebar span, .sidebar-footer .user-info {
+        display: none;
+    }
+    
+    .menu-item {
+        justify-content: center;
+        padding: 15px 0;
+    }
+    
+    .main-content {
+        margin-left: 80px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 5% 0;
+        height: auto;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-image {
+        width: 100%;
+        margin-top: 40px;
+    }
+    
+    .stats-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .top-actions {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .top-actions .btn {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: var(--spacing-md);
+    }
+    
+    .badge-card {
+        padding: var(--spacing-md);
+    }
+    
+    .modal {
+        width: 95%;
+        padding: var(--spacing-md);
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+}
